@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sidebar with Store and Discord</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <!-- Header -->
+  <header class="header">
+    <img src="logo.png" alt="Logo" class="logo">
+    <h1 class="header-title">Aetherion</h1>
+  </header>
+
+  <!-- Sidebar -->
+  <div class="sidebar">
+    <div class="radio-container">
+      <input id="radio-store" name="radio" type="radio" checked>
+      <label for="radio-store">Store</label>
+      <input id="radio-discord" name="radio" type="radio">
+      <label for="radio-discord">Discord</label>
+      <div class="glider-container">
+        <div class="glider"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Content -->
+  <div class="content">
+    <iframe id="store-embed" src="https://aetherion.craftingstore.net/" frameborder="0"></iframe>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
