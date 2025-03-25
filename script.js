@@ -1,3 +1,4 @@
+// Particles.js Initialization
 particlesJS("particles-js", {
     particles: {
         number: { value: 100, density: { enable: true, value_area: 800 } },
@@ -15,3 +16,16 @@ particlesJS("particles-js", {
     },
     retina_detect: true
 });
+
+// Function to Copy Username & Show Alert
+function copyToClipboard() {
+    navigator.clipboard.writeText("kalibyss").then(() => {
+        document.getElementById("copy-alert").classList.remove("hidden");
+        setTimeout(hideAlert, 2000); // Auto-hide alert
+    });
+}
+
+// Function to Hide Alert
+function hideAlert() {
+    document.getElementById("copy-alert").classList.add("hidden");
+}
