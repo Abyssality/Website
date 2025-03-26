@@ -3,41 +3,112 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Kalibyss | Personal Site</title>
-    <link rel="stylesheet" href="style.css">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/howler/2.2.3/howler.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/particles.js"></script>
+    <title>Kalibyss - Personal Profile</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <!-- Particle Background -->
     <div id="particles-js"></div>
 
-    <!-- Main Content -->
-    <div class="container">
-        <img src="cover.png" alt="Profile Picture" class="profile-img">
-        <h1>Kalibyss</h1>
-        <p class="subtitle">13 y/o Programmer from Estonia | AKA Remy</p>
+    <!-- Main Container -->
+    <div class="content">
+        <!-- Profile Section -->
+        <div class="profile-section">
+            <h1>Kalibyss</h1>
+            <p class="description">A 13 y/o programmer from Estonia</p>
+            <img src="cover.png" alt="Cover Image" class="cover-img">
+        </div>
+
+        <!-- Social Links -->
+        <div class="social-links">
+            <a href="https://discord.gg/a4JVtVkCz5" target="_blank" class="social-icon discord-icon"></a>
+            <a href="https://tiktok.com/@kalibyssality" target="_blank" class="social-icon tiktok-icon"></a>
+            <a href="mailto:kalibyss@gmail.com" class="social-icon mail-icon"></a>
+            <a href="https://youtube.com/@kalibyss?si=ruZ2ALYI9x1fNlFI" target="_blank" class="social-icon youtube-icon"></a>
+        </div>
 
         <!-- Music Player -->
         <div class="music-player">
-            <img src="cover.png" alt="Cover Art" class="cover-art">
-            <div class="track-info">
-                <p class="track-title">Kalibyss Theme</p>
-                <input type="range" id="seek-bar" value="0">
-                <input type="range" id="volume-bar" min="0" max="1" step="0.01" value="0.5">
+            <audio id="audio-player" controls>
+                <source src="buckshot.mp3" type="audio/mp3">
+                Your browser does not support the audio element.
+            </audio>
+            <div class="progress-container">
+                <input type="range" id="progress-bar" value="0" class="progress-bar">
             </div>
-            <button id="play-btn">▶️</button>
+            <div class="volume-container">
+                <input type="range" id="volume-bar" value="100" class="volume-bar">
+            </div>
         </div>
 
-        <!-- Social Icons -->
-        <div class="socials">
-            <a href="https://discord.gg/a4JVtVkCz5" class="icon discord">📢</a>
-            <a href="https://tiktok.com/@kalibyssality" class="icon tiktok">🎵</a>
-            <a href="mailto:kalibyss@gmail.com" class="icon mail">✉️</a>
-            <a href="https://youtube.com/@kalibyss" class="icon youtube">▶️</a>
+        <!-- Alert Box -->
+        <div id="alert-box" class="alert-box">
+            <div class="alert-content">
+                <p class="alert-text">Copied to clipboard!</p>
+                <button onclick="closeAlert()" class="close-btn">X</button>
+            </div>
         </div>
     </div>
 
-    <script src="script.js"></script>
+    <!-- External JS Scripts -->
+    <script src="particles.js"></script>
+    <script src="howler.min.js"></script>
+    <script>
+        const audio = document.getElementById('audio-player');
+        const progressBar = document.getElementById('progress-bar');
+        const volumeBar = document.getElementById('volume-bar');
+        const alertBox = document.getElementById('alert-box');
+        const copyButton = document.querySelector('.copy-btn');
+        
+        // Particles JS config
+        particlesJS("particles-js", {
+            particles: {
+                number: { value: 80, density: { enable: true, value_area: 800 } },
+                color: { value: "#ffffff" },
+                shape: { type: "circle", stroke: { width: 0, color: "#000" } },
+                opacity: { value: 0.5, random: true, anim: { enable: true, speed: 1, opacity_min: 0 } },
+                size: { value: 3, random: true, anim: { enable: true, speed: 2, size_min: 0.1 } },
+                line_linked: { enable: true, distance: 150, color: "#ffffff", opacity: 0.4, width: 1 }
+            },
+            interactivity: {
+                events: { onhover: { enable: true, mode: "repulse" }, onclick: { enable: true, mode: "push" } },
+                modes: { repulse: { distance: 100, duration: 0.4 } }
+            }
+        });
+
+        // Handle audio progress and volume
+        audio.addEventListener('timeupdate', () => {
+            const progress = (audio.currentTime / audio.duration) * 100;
+            progressBar.value = progress;
+        });
+
+        progressBar.addEventListener('input', () => {
+            const value = (progressBar.value / 100) * audio.duration;
+            audio.currentTime = value;
+        });
+
+        volumeBar.addEventListener('input', () => {
+            audio.volume = volumeBar.value / 100;
+        });
+
+        // Handle alert box
+        function showAlert() {
+            alertBox.classList.add('show');
+            setTimeout(() => {
+                alertBox.classList.remove('show');
+            }, 3000);
+        }
+
+        // Copy name to clipboard
+        function copyToClipboard() {
+            navigator.clipboard.writeText('Kalibyss').then(() => {
+                showAlert();
+            });
+        }
+
+        // Close the alert box
+        function closeAlert() {
+            alertBox.classList.remove('show');
+        }
+    </script>
 </body>
 </html>
