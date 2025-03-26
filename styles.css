@@ -60,7 +60,6 @@ body, html {
 .social-icon {
     width: 40px;
     height: 40px;
-    background: linear-gradient(45deg, #7f00ff, #ff00ff);
     border-radius: 50%;
     display: flex;
     justify-content: center;
@@ -141,19 +140,21 @@ body, html {
     cursor: pointer;
 }
 
-/* Icons for Social Links */
-.discord-icon {
-    background-image: url('discord-icon.svg');
+/* Social Icons Styles */
+.discord-icon, .tiktok-icon, .mail-icon, .youtube-icon {
+    width: 40px;
+    height: 40px;
+    background: linear-gradient(45deg, #7f00ff, #ff00ff);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    transition: transform 0.3s, box-shadow 0.3s;
 }
 
-.tiktok-icon {
-    background-image: url('tiktok-icon.svg');
-}
-
-.mail-icon {
-    background-image: url('mail-icon.svg');
-}
-
-.youtube-icon {
-    background-image: url('youtube-icon.svg');
+/* Hover effects for icons */
+.discord-icon:hover, .tiktok-icon:hover, .mail-icon:hover, .youtube-icon:hover {
+    transform: scale(1.1);
+    box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.2);
+    background: linear-gradient(45deg, #ff00ff, #7f00ff);
 }
