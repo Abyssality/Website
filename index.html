@@ -51,64 +51,6 @@
 
     <!-- External JS Scripts -->
     <script src="particles.js"></script>
-    <script src="howler.min.js"></script>
-    <script>
-        const audio = document.getElementById('audio-player');
-        const progressBar = document.getElementById('progress-bar');
-        const volumeBar = document.getElementById('volume-bar');
-        const alertBox = document.getElementById('alert-box');
-        const copyButton = document.querySelector('.copy-btn');
-        
-        // Particles JS config
-        particlesJS("particles-js", {
-            particles: {
-                number: { value: 80, density: { enable: true, value_area: 800 } },
-                color: { value: "#ffffff" },
-                shape: { type: "circle", stroke: { width: 0, color: "#000" } },
-                opacity: { value: 0.5, random: true, anim: { enable: true, speed: 1, opacity_min: 0 } },
-                size: { value: 3, random: true, anim: { enable: true, speed: 2, size_min: 0.1 } },
-                line_linked: { enable: true, distance: 150, color: "#ffffff", opacity: 0.4, width: 1 }
-            },
-            interactivity: {
-                events: { onhover: { enable: true, mode: "repulse" }, onclick: { enable: true, mode: "push" } },
-                modes: { repulse: { distance: 100, duration: 0.4 } }
-            }
-        });
-
-        // Handle audio progress and volume
-        audio.addEventListener('timeupdate', () => {
-            const progress = (audio.currentTime / audio.duration) * 100;
-            progressBar.value = progress;
-        });
-
-        progressBar.addEventListener('input', () => {
-            const value = (progressBar.value / 100) * audio.duration;
-            audio.currentTime = value;
-        });
-
-        volumeBar.addEventListener('input', () => {
-            audio.volume = volumeBar.value / 100;
-        });
-
-        // Handle alert box
-        function showAlert() {
-            alertBox.classList.add('show');
-            setTimeout(() => {
-                alertBox.classList.remove('show');
-            }, 3000);
-        }
-
-        // Copy name to clipboard
-        function copyToClipboard() {
-            navigator.clipboard.writeText('Kalibyss').then(() => {
-                showAlert();
-            });
-        }
-
-        // Close the alert box
-        function closeAlert() {
-            alertBox.classList.remove('show');
-        }
-    </script>
+    <script src="script.js"></script>
 </body>
 </html>
